@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telco Customer Churn Prediction</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+    <!-- Feather Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i data-feather="activity"></i> Telco Churn Predictor
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/single_prediction">Single Prediction</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/batch_prediction">Batch Prediction</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="jumbotron text-center mb-5 p-5 bg-dark rounded-3">
+            <h1 class="display-4">Telco Customer Churn Prediction</h1>
+            <p class="lead">Predict customer churn using machine learning</p>
+            <hr class="my-4">
+            <p>Upload a CSV file with customer data or enter individual customer information to predict churn probability.</p>
+            <div class="mt-4">
+                <a href="/single_prediction" class="btn btn-lg btn-primary me-3">
+                    <i data-feather="user"></i> Single Prediction
+                </a>
+                <a href="/batch_prediction" class="btn btn-lg btn-secondary">
+                    <i data-feather="users"></i> Batch Prediction
+                </a>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body text-center">
+                        <i data-feather="upload-cloud" class="mb-3" style="width: 48px; height: 48px;"></i>
+                        <h3 class="card-title">Upload CSV</h3>
+                        <p class="card-text">Upload a CSV file with customer data to predict churn for multiple customers at once.</p>
+                        <a href="/batch_prediction" class="btn btn-outline-primary">Go to Batch Prediction</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body text-center">
+                        <i data-feather="user-plus" class="mb-3" style="width: 48px; height: 48px;"></i>
+                        <h3 class="card-title">Single Customer</h3>
+                        <p class="card-text">Enter information for a single customer to predict their churn probability.</p>
+                        <a href="/single_prediction" class="btn btn-outline-primary">Go to Single Prediction</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body text-center">
+                        <i data-feather="bar-chart-2" class="mb-3" style="width: 48px; height: 48px;"></i>
+                        <h3 class="card-title">Visualization</h3>
+                        <p class="card-text">View feature importance and correlation plots to understand churn factors.</p>
+                        <a href="/single_prediction" class="btn btn-outline-primary">Try a Prediction</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer mt-5 py-3 bg-dark">
+        <div class="container text-center">
+            <span class="text-muted">&copy; 2023</span>
+            <span class="text-muted">&copy; 2023</span>
+            <span class="text-muted">&copy; 2023</span>
+            <span class="text-muted">&copy; 2023</span>
+
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script>
+        // Initialize Feather icons
+        feather.replace();
+    </script>
+</body>
+</html>

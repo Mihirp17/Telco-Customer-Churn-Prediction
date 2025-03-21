@@ -1,0 +1,102 @@
+/* Custom styles to complement Bootstrap */
+
+/* Body styles */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Footer styles */
+.footer {
+    margin-top: auto;
+}
+
+/* Card styles */
+.card {
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    border-radius: 8px 8px 0 0;
+}
+
+/* Form styles */
+.form-control, .form-select {
+    margin-bottom: 10px;
+}
+
+/* Table styles */
+.table-responsive {
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+/* Chart container styles */
+.chart-container {
+    position: relative;
+    margin: auto;
+    height: 300px;
+    width: 100%;
+}
+
+/* Gauge chart styles */
+#churnGauge {
+    margin: 0 auto;
+    max-width: 250px;
+    max-height: 150px;
+}
+
+/* Alert styles */
+.alert-danger {
+    background-color: rgba(220, 53, 69, 0.2);
+    border-color: rgba(220, 53, 69, 0.3);
+}
+
+.alert-success {
+    background-color: rgba(40, 167, 69, 0.2);
+    border-color: rgba(40, 167, 69, 0.3);
+}
+
+.alert-info {
+    background-color: rgba(23, 162, 184, 0.2);
+    border-color: rgba(23, 162, 184, 0.3);
+}
+
+/* Icon styles */
+[data-feather] {
+    vertical-align: middle;
+}
+
+/* Navbar brand icon */
+.navbar-brand [data-feather] {
+    margin-right: 8px;
+}
+
+/* Jumbotron styles */
+.jumbotron {
+    border-radius: 12px;
+    padding: 3rem;
+}
+
+/* Button styles */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Prediction result container */
+.prediction-result {
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* Image fluid for plots */
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}

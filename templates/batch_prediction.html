@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batch Prediction - Telco Customer Churn</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+    <!-- Feather Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i data-feather="activity"></i> Telco Churn Predictor
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/single_prediction">Single Prediction</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/batch_prediction">Batch Prediction</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <h2 class="mb-4">Batch Customer Churn Prediction</h2>
+        <p class="mb-4">Upload a CSV file with customer data to predict churn for multiple customers.</p>
+
+        <div class="card">
+            <div class="card-body">
+                <form method="POST" action="/batch_prediction" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="file" class="form-label">Upload CSV File</label>
+                        <input class="form-control" type="file" id="file" name="file" accept=".csv" required>
+                        <div class="form-text">The CSV file should contain customer data with appropriate columns.</div>
+                    </div>
+                    
+                    <div class="alert alert-info">
+                        <h5 class="alert-heading"><i data-feather="info"></i> CSV Format Requirements</h5>
+                        <p>Your CSV file should include the following columns for best results:</p>
+                        <ul>
+                            <li><strong>Required numerical columns:</strong> SeniorCitizen, MonthlyCharges, TotalCharges, tenure</li>
+                            <li><strong>Required categorical columns:</strong> gender, Partner, Dependents, PhoneService, MultipleLines, InternetService, OnlineSecurity, OnlineBackup, DeviceProtection, TechSupport, StreamingTV, StreamingMovies, Contract, PaperlessBilling, PaymentMethod</li>
+                        </ul>
+                        <p>You can download a sample CSV file to see the exact format required.</p>
+                        <a href="{{ url_for('static', filename='sample.csv') }}" class="btn btn-sm btn-outline-light">
+                            <i data-feather="download"></i> Download Sample CSV
+                        </a>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary">
+                            <i data-feather="upload-cloud"></i> Upload and Predict
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="card mt-4">
+            <div class="card-header">
+                <h4>Alternative: Use Sample Dataset</h4>
+            </div>
+            <div class="card-body">
+                <p>
+                    You can also use our sample Telco Customer Churn dataset to test the prediction functionality.
+                </p>
+                <a href="{{ url_for('static', filename='WA_Fn-UseC_-Telco-Customer-Churn.csv') }}" class="btn btn-secondary">
+                    <i data-feather="download"></i> Download Sample Dataset
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer mt-5 py-3 bg-dark">
+        <div class="container text-center">
+            <span class="text-muted"></span>
+
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script>
+        // Initialize Feather icons
+        feather.replace();
+    </script>
+</body>
+</html>

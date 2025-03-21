@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Results - Telco Customer Churn</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="static/css/custom.css">
+    <!-- Feather Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i data-feather="activity"></i> Telco Churn Predictor
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/single_prediction">Single Prediction</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/batch_prediction">Batch Prediction</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- Flash messages would go here in a dynamic template -->
+
+        <h2 class="mb-4">Prediction Results</h2>
+
+        <!-- Single Prediction Results -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4>Customer Churn Prediction</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="text-center mb-4">
+                            <h3>Prediction</h3>
+                            <div class="alert alert-danger text-center">
+                                <i data-feather="user-x" style="width: 48px; height: 48px;"></i>
+                                <h4 class="mt-2">Customer is likely to churn</h4>
+                                <p class="mb-0">Probability: 75.5%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-center mb-4">
+                            <h3>Churn Probability</h3>
+                            <div class="position-relative">
+                                <canvas id="churnGauge"></canvas>
+                                <div class="position-absolute top-50 start-50 translate-middle">
+                                    <h4>75.5%</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Batch Prediction Results - Example content -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4>Batch Prediction Results</h4>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-danger">
+                    <h5>Overall Churn Rate: 25.3%</h5>
+                </div>
+                
+                <!-- Model Evaluation Metrics -->
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h5>Model Performance Metrics</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card mb-3">
+                                    <div class="card-header">Accuracy Metrics</div>
+                                    <div class="card-body">
+                                        <ul class="list-group">
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Accuracy
+                                                <span class="badge bg-primary rounded-pill">85.20%</span>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Precision
+                                                <span class="badge bg-info rounded-pill">78.40%</span>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Recall
+                                                <span class="badge bg-success rounded-pill">82.10%</span>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                F1 Score
+                                                <span class="badge bg-warning rounded-pill">80.20%</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header">Confusion Matrix</div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col"></th>
+                                                        <th scope="col">Predicted: No Churn</th>
+                                                        <th scope="col">Predicted: Churn</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">Actual: No Churn</th>
+                                                        <td class="bg-success bg-opacity-25">540 (True Negatives)</td>
+                                                        <td class="bg-danger bg-opacity-25">60 (False Positives)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Actual: Churn</th>
+                                                        <td class="bg-danger bg-opacity-25">40 (False Negatives)</td>
+                                                        <td class="bg-success bg-opacity-25">160 (True Positives)</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="table-responsive">
+                    <!-- Prediction results table would be here -->
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Customer ID</th>
+                                <th>Prediction</th>
+                                <th>Probability</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1001</td>
+                                <td>Churn</td>
+                                <td>87.5%</td>
+                            </tr>
+                            <tr>
+                                <td>1002</td>
+                                <td>Stay</td>
+                                <td>12.3%</td>
+                            </tr>
+                            <tr>
+                                <td>1003</td>
+                                <td>Churn</td>
+                                <td>92.1%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature Importance - Static placeholder -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4>Feature Importance</h4>
+            </div>
+            <div class="card-body">
+                <div class="text-center">
+                    <img src="static/images/feature_importance.png" class="img-fluid" alt="Feature Importance Plot">
+                </div>
+            </div>
+        </div>
+
+        <!-- Correlation Plot - Static placeholder -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4>Feature Correlation</h4>
+            </div>
+            <div class="card-body">
+                <div class="text-center">
+                    <img src="static/images/correlation_plot.png" class="img-fluid" alt="Correlation Plot">
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="/single_prediction" class="btn btn-primary me-3">
+                <i data-feather="refresh-cw"></i> New Prediction
+            </a>
+            <a href="/batch_prediction" class="btn btn-primary me-3">
+                <i data-feather="upload-cloud"></i> Upload Another File
+            </a>
+            <a href="/" class="btn btn-secondary">
+                <i data-feather="home"></i> Back to Home
+            </a>
+        </div>
+    </div>
+
+    <footer class="footer mt-5 py-3 bg-dark">
+        <div class="container text-center">
+            <span class="text-muted"></span>
+
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="static/js/main.js"></script>
+    <script>
+        // Initialize Feather icons
+        feather.replace();
+        
+        // Create gauge chart for churn probability
+        const churnGaugeCtx = document.getElementById('churnGauge').getContext('2d');
+        const churnProbability = 75.5;
+        
+        const gradientSegment = churnGaugeCtx.createLinearGradient(0, 0, 200, 0);
+        gradientSegment.addColorStop(0, '#28a745'); // Green
+        gradientSegment.addColorStop(0.5, '#ffc107'); // Yellow
+        gradientSegment.addColorStop(1, '#dc3545'); // Red
+        
+        const churnGauge = new Chart(churnGaugeCtx, {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                    data: [churnProbability, 100 - churnProbability],
+                    backgroundColor: [
+                        gradientSegment,
+                        'rgba(40, 40, 40, 0.1)'
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                cutout: '70%',
+                circumference: 180,
+                rotation: 270,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        enabled: false
+                    }
+                },
+                animation: {
+                    animateRotate: true,
+                    animateScale: true
+                }
+            }
+        });
+    </script>
+</body>
+</html>
